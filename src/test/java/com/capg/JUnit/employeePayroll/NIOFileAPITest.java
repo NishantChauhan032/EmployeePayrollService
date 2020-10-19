@@ -15,21 +15,21 @@ public class NIOFileAPITest {
 
 	@Test
 	public void givenPath_WhenChecked_ThenConfirm() throws IOException {
-		//check file exists
+		// check file exists
 		Path homePath = Paths.get(HOME);
 		Assert.assertTrue(Files.exists(homePath));
 
-		//delete file and check file not exist
+		// delete file and check file not exist
 		Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NIO);
 		if (Files.exists(playPath))
 			FileUtils.deleteFiles(playPath.toFile());
 		Assert.assertTrue(Files.notExists(playPath));
 
-		//create directory
+		// create directory
 		Files.createDirectory(playPath);
 		Assert.assertTrue(Files.exists(playPath));
 
-		//create file
+		// create file
 		IntStream.range(1, 10).forEach(cntr -> {
 			Path tempFile = Paths.get(playPath + "/temp" + cntr);
 			Assert.assertTrue(Files.notExists(tempFile));
@@ -40,16 +40,17 @@ public class NIOFileAPITest {
 			Assert.assertTrue(Files.exists(tempFile));
 		});
 
-		//list file directories as well as files with extension
+		// list file directories as well as files with extension
 		Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
 		Files.newDirectoryStream(playPath).forEach(System.out::println);
 		Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().startsWith("temp"))
 				.forEach(System.out::println);
 	}
-	public void givenADirectory_WhenWatched_ListAllTheActivities() throws IOException{
+
+	public void givenADirectory_WhenWatched_ListAllTheActivities() throws IOException {
 		Path dir = Paths.get(HOME + "/" + PLAY_WITH_NIO);
 		Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
 		((Java8WatchServiceExample) new Java8WatchServiceExample(dir)).processEvents();
 	}
-	
+
 }
