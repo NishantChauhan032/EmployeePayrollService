@@ -10,4 +10,4 @@ public class FileUtils {
 				deleteFiles(file);
 		return contentsToDelete.delete();
 	}
-}
+} 
