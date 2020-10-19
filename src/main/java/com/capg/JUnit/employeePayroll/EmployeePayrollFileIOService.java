@@ -18,7 +18,8 @@ public class EmployeePayrollFileIOService {
 
 		try {
 			Files.write(Paths.get(PAYROLL_FILE_NAME), empBuffer.toString().getBytes());
-		} catch (IOException e) {
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -27,8 +28,19 @@ public class EmployeePayrollFileIOService {
 		long entries = 0;
 		try {
 			entries = Files.lines(new File(PAYROLL_FILE_NAME).toPath()).count();
-		} catch (IOException e) {
 		}
+		catch(IOException e) {
+			e.printStackTrace();
+	}
 		return entries;
+	}
+	
+	public void printEntries() {
+		try {
+			Files.lines(new File(PAYROLL_FILE_NAME).toPath()).forEach(System.out::println);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
