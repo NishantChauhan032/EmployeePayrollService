@@ -1,0 +1,3 @@
+Employee ID = 1, Employee Name = Nishant, Salary = 10000.0
+Employee ID = 2, Employee Name = Chauhan, Salary = 15000.0
+Employee ID = 3, Employee Name = Singh, Salary = 10500.0
